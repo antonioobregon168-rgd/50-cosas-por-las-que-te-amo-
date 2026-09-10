@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>50 cosas por las que te amo ❤️</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #090707;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           PANTALLA DE CONTRASEÑA
+        ========================= */
+
+        #login {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                radial-gradient(circle at center, #3a111c 0%, #12080c 45%, #050505 100%);
+
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        #login.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .login-box {
+            width: min(90%, 430px);
+            text-align: center;
+            padding: 45px 30px;
+
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 25px;
+
+            background: rgba(255,255,255,.05);
+            backdrop-filter: blur(20px);
+
+            box-shadow: 0 0 80px rgba(120, 10, 40, .35);
+
+            animation: aparecer 1.5s ease;
+        }
+
+        .login-heart {
+            font-size: 55px;
+            margin-bottom: 15px;
+            animation: latido 2s infinite;
+        }
+
+        .login-box h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .login-box p {
+            color: #c8bfc2;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .password {
+            width: 100%;
+            padding: 15px 18px;
+
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,.2);
+
+            background: rgba(0,0,0,.35);
+            color: white;
+
+            outline: none;
+            text-align: center;
+            font-size: 16px;
+
+            transition: .3s;
+        }
+
+        .password:focus {
+            border-color: #d94b70;
+            box-shadow: 0 0 20px rgba(217,75,112,.2);
+        }
+
+        .enter {
+            margin-top: 15px;
+            width: 100%;
+            padding: 14px;
+
+            border: none;
+            border-radius: 12px;
+
+            background: linear-gradient(135deg, #8d203d, #d94b70);
+            color: white;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .enter:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(217,75,112,.3);
+        }
+
+        #error {
+            color: #ff6f91;
+            font-size: 13px;
+            margin-top: 15px;
+            min-height: 18px;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        #pagina {
+            display: none;
+        }
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            padding: 50px 20px;
+
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(circle at 50% 40%, #481521 0%, #16090d 35%, #090707 70%);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+
+            border-radius: 50%;
+
+            background: rgba(160, 20, 60, .12);
+            filter: blur(100px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .small-title {
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-size: 11px;
+            color: #d8899d;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(55px, 10vw, 105px);
+            line-height: .9;
+            font-weight: 500;
+        }
+
+        .hero h1 span {
+            color: #d94b70;
+        }
+
+        .hero-subtitle {
+            margin-top: 25px;
+            color: #bcb2b5;
+            font-size: 15px;
+        }
+
+        .photo-container {
+            margin-top: 45px;
+
+            width: 250px;
+            height: 330px;
+
+            border-radius: 20px;
+            padding: 7px;
+
+            background: linear-gradient(135deg, #d94b70, transparent, #7b2039);
+
+            box-shadow: 0 30px 80px rgba(0,0,0,.6);
+            transform: rotate(-2deg);
+
+            transition: .5s;
+        }
+
+        .photo-container:hover {
+            transform: rotate(0deg) scale(1.03);
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 15px;
+            display: block;
+        }
+
+        .scroll {
+            position: absolute;
+            bottom: 25px;
+
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #8c8084;
+
+            animation: flotar 2s infinite;
+        }
+
+        /* =========================
+           LISTA
+        ========================= */
+
+        .section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 100px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title .number {
+            color: #d94b70;
+            font-size: 13px;
+            letter-spacing: 4px;
+        }
+
+        .section-title h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(45px, 7vw, 75px);
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .section-title p {
+            color: #938a8d;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .reasons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            position: relative;
+
+            padding: 30px;
+
+            min-height: 170px;
+
+            border: 1px solid rgba(255,255,255,.09);
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.055),
+                    rgba(255,255,255,.015)
+                );
+
+            overflow: hidden;
+
+            opacity: 0;
+            transform: translateY(35px);
+
+            transition:
+                opacity .8s ease,
+                transform .8s ease,
+                border .3s ease,
+                background .3s ease;
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            border-color: rgba(217,75,112,.45);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(217,75,112,.10),
+                    rgba(255,255,255,.02)
+                );
+
+            transform: translateY(-5px);
+        }
+
+        .card-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            color: #d94b70;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #ddd6d8;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 23px;
+            line-height: 1.25;
+        }
+
+        .card::after {
+            content: "♡";
+            position: absolute;
+            right: 20px;
+            bottom: 10px;
+
+            font-size: 60px;
+            color: rgba(217,75,112,.06);
+        }
+
+        /* =========================
+           FINAL
+        ========================= */
+
+        .final {
+            min-height: 80vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            padding: 80px 20px;
+
+            background:
+                radial-gradient(circle at center, #3d101b, #090707 65%);
+        }
+
+        .final-content {
+            max-width: 700px;
+        }
+
+        .final-heart {
+            font-size: 70px;
+            animation: latido 2s infinite;
+        }
+
+        .final h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(50px, 8vw, 85px);
+            margin: 20px 0;
+        }
+
+        .final p {
+            color: #aaa1a4;
+            line-height: 1.8;
+        }
+
+        .signature {
+            margin-top: 35px;
+            color: #d94b70;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 25px;
+        }
+
+        /* =========================
+           ANIMACIONES
+        ========================= */
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes latido {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.12);
+            }
+        }
+
+        @keyframes flotar {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* =========================
+           CELULAR
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .reasons {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 60px;
+            }
+
+            .photo-container {
+                width: 220px;
+                height: 290px;
+            }
+
+            .card {
+                min-height: 150px;
+                padding: 25px;
+            }
+
+            .card p {
+                font-size: 21px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         CONTRASEÑA
+    ========================= -->
+
+    <div id="login">
+
+        <div class="login-box">
+
+            <div class="login-heart">♡</div>
+
+            <h1>Esto es para ti</h1>
+
+            <p>
+                Hay algo aquí que solo tú deberías ver.
+            </p>
+
+            <input
+                type="password"
+                id="password"
+                class="password"
+                placeholder="Escribe la contraseña"
+            >
+
+            <button class="enter" onclick="entrar()">
+                Entrar ❤️
+            </button>
+
+            <div id="error"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PÁGINA
+    ========================= -->
+
+    <main id="pagina">
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="small-title">
+                    Una pequeña lista para ti
+                </div>
+
+                <h1>
+                    50 cosas<br>
+                    <span>por las que te amo</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Porque 50 probablemente tampoco sean suficientes.
+                </p>
+
+                <div class="photo-container">
+
+                    <!-- AQUÍ VA LA FOTO -->
+
+                    <img src="foto.jpg" alt="Una foto especial">
+
+                </div>
+
+            </div>
+
+            <div class="scroll">
+                ↓ DESLIZA ↓
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             50 RAZONES
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="number">
+                    01 — 50
+                </div>
+
+                <h2>
+                    Las 50 razones
+                </h2>
+
+                <p>
+                    Y podría seguir escribiendo.
+                </p>
+
+            </div>
+
+
+            <div class="reasons">
+
+                <div class="card">
+                    <div class="card-number">01</div>
+                    <p>Porque tienes una forma muy especial de hacerme sonreír.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">02</div>
+                    <p>Porque contigo hasta los momentos más simples tienen algo diferente.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">03</div>
+                    <p>Porque me encanta la manera en la que eres tú misma.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">04</div>
+                    <p>Porque tienes una sonrisa que puede cambiar completamente mi día.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">05</div>
+                    <p>Porque me gusta escuchar lo que tienes que decir.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">06</div>
+                    <p>Porque haces que quiera guardar nuestros momentos para siempre.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">07</div>
+                    <p>Porque tienes una personalidad que no se parece a ninguna otra.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">08</div>
+                    <p>Porque me gusta la tranquilidad que siento cuando estoy contigo.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">09</div>
+                    <p>Porque incluso tus pequeñas ocurrencias terminan haciéndome reír.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">10</div>
+                    <p>Porque simplemente me gusta tenerte en mi vida.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">11</div>
+                    <p>Porque haces especiales cosas que normalmente parecerían insignificantes.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">12</div>
+                    <p>Porque admiro muchas cosas de la persona que eres.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">13</div>
+                    <p>Porque contigo puedo disfrutar incluso de no hacer absolutamente nada.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">14</div>
+                    <p>Porque tienes una manera única de ver las cosas.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">15</div>
+                    <p>Porque me encanta cuando logramos reírnos de cualquier tontería.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">16</div>
+                    <p>Porque haces que quiera ser una mejor persona.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">17</div>
+                    <p>Porque tus pequeños detalles significan muchísimo.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">18</div>
+                    <p>Porque nunca necesito fingir ser alguien diferente contigo.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">19</div>
+                    <p>Porque me gusta cada conversación que terminamos alargando sin darnos cuenta.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">20</div>
+                    <p>Porque tu presencia hace que cualquier lugar se sienta diferente.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">21</div>
+                    <p>Porque tienes una energía que es imposible ignorar.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">22</div>
+                    <p>Porque me gusta aprender cosas nuevas de ti.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">23</div>
+                    <p>Porque siempre terminas dejando algún recuerdo bonito.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">24</div>
+                    <p>Porque me encanta tu manera de expresarte.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">25</div>
+                    <p>Porque eres una persona que quiero seguir conociendo.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">26</div>
+                    <p>Porque me haces apreciar más los pequeños momentos.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">27</div>
+                    <p>Porque contigo siempre hay algo que recordar.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">28</div>
+                    <p>Porque me gusta cómo cambia mi humor cuando apareces.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">29</div>
+                    <p>Porque eres alguien que realmente importa para mí.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">30</div>
+                    <p>Porque hay recuerdos contigo que no cambiaría por nada.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">31</div>
+                    <p>Porque me encanta compartir cosas contigo.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">32</div>
+                    <p>Porque tienes detalles que quizá tú ni siquiera notas.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">33</div>
+                    <p>Porque haces que esperar un mensaje tuyo valga la pena.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">34</div>
+                    <p>Porque me gusta cómo podemos pasar de una conversación seria a una tontería en segundos.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">35</div>
+                    <p>Porque tienes una forma de ser que me resulta inolvidable.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">36</div>
+                    <p>Porque haces que algunos días difíciles sean un poquito mejores.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">37</div>
+                    <p>Porque me gusta recordar las cosas que hemos vivido.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">38</div>
+                    <p>Porque cada momento contigo tiene algo que lo hace especial.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">39</div>
+                    <p>Porque admiro la forma en que persigues lo que quieres.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">40</div>
+                    <p>Porque me haces sentir que los pequeños detalles importan.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">41</div>
+                    <p>Porque nunca sabes cuánto puede significar para mí un momento contigo.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">42</div>
+                    <p>Porque me gusta verte feliz.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">43</div>
+                    <p>Porque tu forma de ser se quedó en mis pensamientos.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">44</div>
+                    <p>Porque siempre encuentro alguna razón nueva para apreciarte.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">45</div>
+                    <p>Porque me gusta que seas parte de mis recuerdos favoritos.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">46</div>
+                    <p>Porque contigo los momentos normales pueden convertirse en recuerdos increíbles.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">47</div>
+                    <p>Porque hay algo en ti que simplemente no puedo explicar.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">48</div>
+                    <p>Porque después de tantas razones todavía siento que faltan muchas.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">49</div>
+                    <p>Porque eres tú, y eso por sí solo ya significa muchísimo.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">50</div>
+                    <p>Porque entre tantas personas, me alegra muchísimo haberte encontrado.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FINAL
+        ========================= -->
+
+        <section class="final">
+
+            <div class="final-content">
+
+                <div class="final-heart">
+                    ❤️
+                </div>
+
+                <h2>
+                    Y todavía<br>
+                    faltan muchas.
+                </h2>
+
+                <p>
+                    Estas son solamente 50 de todas las razones que podría escribir.
+                    Algunas se pueden explicar y otras simplemente se sienten.
+                </p>
+
+                <div class="signature">
+                    Para ti, siempre. ♡
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        /* =========================
+           CONTRASEÑA
+        ========================= */
+
+        const CONTRASENA = "teamo";
+
+        function entrar() {
+
+            const password =
+                document.getElementById("password").value;
+
+            const error =
+                document.getElementById("error");
+
+            if (password === CONTRASENA) {
+
+                document
+                    .getElementById("login")
+                    .classList.add("hidden");
+
+                document
+                    .getElementById("pagina")
+                    .style.display = "block";
+
+                document.body.style.overflowX = "hidden";
+
+                activarAnimaciones();
+
+            } else {
+
+                error.textContent =
+                    "Esa no es la contraseña ❤️";
+
+            }
+        }
+
+
+        /* ENTER DEL TECLADO */
+
+        document
+            .getElementById("password")
+            .addEventListener("keydown", function(event) {
+
+                if (event.key === "Enter") {
+                    entrar();
+                }
+
+            });
+
+
+        /* =========================
+           ANIMACIÓN DE TARJETAS
+        ========================= */
+
+        function activarAnimaciones() {
+
+            const cards =
+                document.querySelectorAll(".card");
+
+            const observer =
+                new IntersectionObserver(
+
+                    entries => {
+
+                        entries.forEach(entry => {
+
+                            if (entry.isIntersecting) {
+
+                                entry.target.classList.add("visible");
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        });
+
+                    },
+
+                    {
+                        threshold: 0.15
+                    }
+
+                );
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+    </script>
+
+</body>
+</html>
